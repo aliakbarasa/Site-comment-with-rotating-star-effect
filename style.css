@@ -1,0 +1,203 @@
+@-webkit-keyframes star-animation {
+  0% {
+    fill: #d0d8e0;
+    stroke: #d0d8e0;
+    stroke-width: 2;
+    transform: scale(1) rotate(-72deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  65% {
+    transform: scale(0.5);
+  }
+  80% {
+    stroke: gold;
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    fill: gold;
+    stroke: gold;
+    transform: scale(1) rotate(0deg);
+  }
+}
+@keyframes star-animation {
+  0% {
+    fill: #d0d8e0;
+    stroke: #d0d8e0;
+    stroke-width: 2;
+    transform: scale(1) rotate(-72deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  65% {
+    transform: scale(0.5);
+  }
+  80% {
+    stroke: gold;
+    transform: scale(1.1) rotate(-3deg);
+  }
+  100% {
+    fill: gold;
+    stroke: gold;
+    transform: scale(1) rotate(0deg);
+  }
+}
+@-webkit-keyframes circle-animation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.25);
+    opacity: 0.3;
+  }
+  60% {
+    transform: scale(1.75);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+@keyframes circle-animation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.25);
+    opacity: 0.3;
+  }
+  60% {
+    transform: scale(1.75);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+.review-stars {
+  margin: 4px auto 16px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  grid-gap: 0 calc(var(--size) / 2);
+  justify-content: center;
+  background: white;
+  border-radius: 100px;
+  padding: 16px 24px;
+}
+
+/*
+  --------------------------------
+  One Star SVG
+*/
+svg.review-star {
+  width: var(--size);
+  height: var(--size);
+  display: block;
+  overflow: visible;
+}
+svg.review-star path.star {
+  stroke: transparent;
+  stroke-width: 0;
+}
+svg.review-star path.star.on {
+  fill: gold;
+  opacity: 0;
+}
+svg.review-star path.star.off {
+  fill: #d0d8e0;
+}
+svg.review-star circle {
+  transform: scale(2);
+  transform-origin: center;
+  opacity: 0;
+}
+svg.review-star * {
+  transform-origin: center;
+}
+
+/*
+  --------------------------------
+  Loading Skeleton State
+*/
+.loading-skeleton .review-star {
+  fill: #d0d8e0;
+}
+
+/*
+  --------------------------------
+  Animation On - SVG element
+*/
+svg.review-star.animate-star .star.on {
+  -webkit-animation: 0.6s star-animation ease-out;
+          animation: 0.6s star-animation ease-out;
+  -webkit-animation-delay: var(--delay, 0s);
+          animation-delay: var(--delay, 0s);
+  fill: gold;
+  stroke: none;
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+svg.review-star.animate-star .star.on + circle {
+  stroke: none;
+  fill: #ffe34d;
+  -webkit-animation: circle-animation 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.25s;
+          animation: circle-animation 0.6s cubic-bezier(0.47, 0, 0.745, 0.715) 0.25s;
+}
+
+/*
+  --------------------------------
+  Static, does not animate.
+*/
+svg.review-star.filled .star.on {
+  opacity: 1;
+  transition: none;
+}
+
+body {
+  background: radial-gradient(#5b7289, #0a0c0e);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+h1 {
+  font: bold 24px/1 Sans-serif;
+  text-align: center;
+  margin: 2em;
+}
+
+button {
+  width: 220px;
+  margin: 24px 0;
+  border-radius: 100px;
+  font: bold 12px/1 Sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 16px 32px;
+  border: none;
+  border: 1px solid #d0d8e0;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.15s;
+  transform: scale(1);
+  color: #657f99;
+}
+button:hover {
+  background: #eff2f4;
+  border-color: #657f99;
+}
+button:active {
+  transform: scale(0.985);
+}
